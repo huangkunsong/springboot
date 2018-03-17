@@ -99,3 +99,7 @@ management:
       exposure:
         #actuator 显示所有的信息
         include: "*"
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
