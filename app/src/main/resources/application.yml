@@ -1,11 +1,15 @@
-number : ${random.value}
 server:
-  port: 9999
+  #port: ${random.int[9000,9999]}
+  port: 2223
   servlet:
     context-path:
 spring:
   application:
     name: springboot
+  cloud:
+    loadbalancer:
+    # 开启服务重试机制
+      retry: true
   # 数据源
   datasource:
     type: com.alibaba.druid.pool.xa.DruidXADataSource
@@ -102,4 +106,18 @@ management:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:1111/eureka/
+      defaultZone: http://peer1:1111/eureka/
+    # 获取服务清单后,默认缓存30s
+    registry-fetch-interval-seconds: 30
+    # 设置客户端所属的region
+    healthcheck:
+      enabled: true
+  instance:
+    # 定义服务失效的时间
+    lease-expiration-duration-in-seconds: 90
+    # 定义服务续约任务的调用间隔时间
+    lease-renewal-interval-in-seconds: 30
+    # eureka注册中心点击实例时跳转的链接
+    status-page-url-path: /actuator/info
+    # eureka注册中心做服务健康检查地址
+    health-check-url-path: /actuator/health
