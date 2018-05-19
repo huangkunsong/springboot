@@ -1,20 +1,23 @@
 package com.hks.ribbonconsumer.controller;
 
+import com.hks.ribbonconsumer.services.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import java.lang.management.ManagementFactory;
 
 @RestController
 public class ConsumerController {
 
     @Autowired
-    RestTemplate restTemplate;
+    HomeService homeService;
 
     @RequestMapping(path = "/getUsers", method = RequestMethod.GET)
     public String getAllUsers() {
-        return restTemplate.getForEntity("http://springboot/home",
-            String.class).getBody();
+        System.out.println(ManagementFactory.getThreadMXBean().getThreadCount());
+        return homeService.getUsers();
     }
+
 }

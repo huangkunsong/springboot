@@ -7,3 +7,91 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://peer1:1111/eureka/
+#actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        #actuator 显示所有的信息
+        include: "*"
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # 断路器拦截执行超时时间
+            timeoutInMilliseconds: 1000
+            # 断路器拦截超时是否中断执行线程
+            interruptOnTimeout: true
+            # 执行取消时是否中断线程
+            interruptOnCancel: true
+          # 控制断路器隔离策略：THREAD,SEMAPHORE（信号量）
+          strategy: THREAD
+          semaphote:
+            # 使用信号量隔离策略时,信号量大小。超过会被拒绝
+            maxConcurrentRequests: 10
+        timeout:
+          # 断路器是否启动超时拦截
+          enable: true
+      fallback:
+        # fallback策略是否启用
+        enabled: true
+        isolation:
+          semaphore:
+            # fallback方法执行最大并发请求数,超过后续请求直接抛出异常,不执行fallback
+            maxConcurrentRequest: 10
+      circuitBreaker:
+        # 断路器是否启动
+        enabled: true
+        # 设置滚动时间窗内,断路器的最小请求数。
+        # 如20,滚动时间10S内,有19个请求失败了,断路器也不会开启。
+        requestVolumeThreshold: 20
+        # 断路器开启后的休眠时间,休眠结束后,断路器为半开启状态。
+        # 尝试熔断的请求命令时,如果失败就开启断路器,成功就关闭断路器。
+        sleepWindowInMilliseconds: 5000
+        # 设置断路器打开的错误百分比条件。滚动时间窗内,错误请求数超过50%,就把断路器开启,否则就关闭。
+        errorThresholdPercentage: 50
+        # 断路器强制进行开启状态,它会拒绝所有请求。优先于forceClosed
+        forceOpen: false
+        # 断路器强制进行关闭状态
+        forceClosed: false
+      requestCache:
+        # 是否开启请求缓存
+        enabled: true
+      requestLog:
+        # 设置HystrixCommand的执行和事件是否打印日志到HystrixRequestLog
+        enabled: true
+      metrics:
+        rollingStats:
+          # 设置滚动时间窗的长度。用于断路器判断健康时需要收集信息的持续时间。
+          # 断路器在收集指标信息时会工具设置的时间窗长度拆分成多个同来累计各度量值,
+          # 每个桶记录了一段时间内的采集指标。
+          # 默认10000拆成默认10个桶,每个桶记录1000毫秒内的指标信息
+          timeInMilliseconds: 10000
+          # 设置滚动时间窗统计指标划分的桶数量
+          numbackets: 10
+        rollingPercentile:
+          # 设置对命令执行的延迟是否使用百分位数来跟踪和计算，false:所有概要统计都返回-1
+          enabled: true
+          # 设置百分位统计的滚动窗口的持续时间
+          timeInMilliseconds: 60000
+          # 设置百分位统计滚动窗口使用桶的数量
+          numBuckets: 6
+  collapser:
+    default:
+      # 一次合并处理允许最大请求数：默认Integer.MAX_VALUE
+      maxRequestsInBatch: 1000
+      # 合并请求处理延迟时间
+      timerDelayInMilliseconds: 10
+      requestCache:
+        # 合并请求是否开启缓存
+        enabled: true
+  threadpool:
+    default:
+      # 设置命令线程池的核心线程数,也是命令执行的最大并发量
+      coreSize: 10
+      # 设置线程池最大队列大小。
+      # -1使用:SynchronousQueue实现队列,
+      # 否则使用LinkedBlockingQueue
+      maxQueueSize: -1

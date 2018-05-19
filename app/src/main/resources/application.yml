@@ -9,7 +9,8 @@ spring:
   cloud:
     loadbalancer:
     # 开启服务重试机制
-      retry: true
+      retry:
+        enabled: true
   # 数据源
   datasource:
     type: com.alibaba.druid.pool.xa.DruidXADataSource
