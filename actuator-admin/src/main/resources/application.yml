@@ -1,11 +1,9 @@
 spring:
   application:
-    name: peer2
+    name: admin-server
 server:
-  port: 1001
+  port: 12000
 eureka:
-  instance:
-    hostname: peer2
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://peer1:1000/eureka/

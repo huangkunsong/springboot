@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: hystrix-turbine
+server:
+  port: 11000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1000/eureka/
+# 基于rabbit不需要下面配置
+#turbine:
+#  # 要收集指标的应用
+#  app-config: service-producer,service-consumer
+#  cluster-name-expression: new String("default")
+#  # 同一主机上的服务,通过端口号区分
+#  combine-host-port: true
+#  instanceUrlSuffix: actuator/hystrix.stream
