@@ -24,7 +24,7 @@ public class UserController {
 
 	@ApiOperation(value = "获取所有用户", notes = "根据用户获取所有")
     @RequestMapping(value = "/findUsers", method = RequestMethod.GET)
-    public List<UserVO> findUsers(@RequestParam("userIds") List<String> userIds){
+    public List<UserVO> findUsers(@RequestParam(name = "userIds", required = false) List<String> userIds){
         return userService.findUsersById(userIds);
     }
 

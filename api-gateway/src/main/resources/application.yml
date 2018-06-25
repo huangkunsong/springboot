@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-gateway
+server:
+  port: 5555
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1000/eureka/
+zuul:
+  # 前缀
+  prefix: /api
+  # 前缀开启,默认
+  strip-prefix: true
+  routes:
+    # 自定义映射，?：单字符,*：任意字符，**：任意字符包含子级
+    producer: /a/**
+  # 忽略指定服务
+  ignored-services: producer
+  # 忽略指定服务的指定路径
+  #ignored-patterns： /**/producer/**
+management:
+  security:
+    web:
+      exposure:
+        include: "*"

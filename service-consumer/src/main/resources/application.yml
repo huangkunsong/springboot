@@ -1,6 +1,6 @@
 spring:
   application:
-    name: service-consumer
+    name: consumer
   boot:
       admin:
         client:
@@ -11,6 +11,15 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://peer1:1000/eureka/
+ribbon:
+  ConnectTimeout: 1000
+  ReadTimeout: 5000
+  # 开启重试
+  OkToRetryOnAllOperations: true
+  # 请求失败后最多切换2个实例请求
+  MaxAutoRetriesNextServer: 2
+  # 请求失败N次后切换实例
+  MaxAutoRetries: 1
 #actuator
 management:
   endpoints:

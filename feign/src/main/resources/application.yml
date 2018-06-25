@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: feign
+server:
+  port: 2500
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1000/eureka/
+ribbon:
+  readTimeout: 5000
+  connectTimeout: 5000
+logging:
+  level:
+    com:
+      hks:
+        feign:
+          service: debug
+

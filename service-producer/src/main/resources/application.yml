@@ -5,7 +5,7 @@ server:
     context-path:
 spring:
   application:
-    name: service-producer
+    name: producer
   cloud:
     loadbalancer:
     # 开启服务重试机制
