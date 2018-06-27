@@ -5,6 +5,7 @@ import com.hks.apigateway.filter.AccessFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.netflix.zuul.filters.discovery.PatternServiceRouteMapper;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -17,5 +18,18 @@ public class ApiGatewayApplication {
     @Bean
     public AccessFilter accessFilter() {
         return new AccessFilter();
+    }
+
+    /**
+     * 自定义路径转换器
+     * 将producer-v1的url转换为v1/producer
+     * @return
+     */
+    @Bean
+    public PatternServiceRouteMapper serviceRouteMapper() {
+        return new PatternServiceRouteMapper(
+            "(?<name>^.+)-(?<version>v.+$)",
+            "${version}/${name}"
+        );
     }
 }

@@ -33,4 +33,9 @@ public class UserController {
     public UserVO findUser(@PathVariable String userId){
         return userService.findUserById(userId);
     }
+
+    @RequestMapping(value = "/aa")
+    public void test(@RequestParam("userName") String a){
+        System.out.println(a);
+    }
 }
