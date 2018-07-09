@@ -1,5 +1,6 @@
 package com.hks.producer.controller;
 
+import com.hks.producer.common.NotResultWrap;
 import com.hks.producer.entity.UserVO;
 import com.hks.producer.service.UserService;
 import io.swagger.annotations.Api;
@@ -22,6 +23,7 @@ public class UserController {
     @Autowired
     DiscoveryClient client;
 
+    @NotResultWrap
 	@ApiOperation(value = "获取所有用户", notes = "根据用户获取所有")
     @RequestMapping(value = "/findUsers", method = RequestMethod.GET)
     public List<UserVO> findUsers(@RequestParam(name = "userIds", required = false) List<String> userIds){
@@ -31,11 +33,7 @@ public class UserController {
     @ApiOperation(value = "获取单个用户信息", notes = "获取单个用户信息")
     @RequestMapping(value = "/findUser/{userId}", method = RequestMethod.GET)
     public UserVO findUser(@PathVariable String userId){
+	    //throw new NullPointerException();
         return userService.findUserById(userId);
-    }
-
-    @RequestMapping(value = "/aa")
-    public void test(@RequestParam("userName") String a){
-        System.out.println(a);
     }
 }

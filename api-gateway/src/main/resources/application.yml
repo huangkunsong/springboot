@@ -8,6 +8,8 @@ eureka:
     serviceUrl:
       defaultZone: http://peer1:1000/eureka/
 zuul:
+  # 服务重定向时,控制服务经过api-gateway转发
+  addHostHeader: true
   # 前缀
   prefix: /api
   # 前缀开启,默认
@@ -22,9 +24,14 @@ zuul:
   # 忽略指定服务
   ignored-services: producer
   # 忽略指定服务的指定路径
-  ignored-patterns: "/**/a/producer/findUsers/**"
+  # ignored-patterns: "/**/a/producer/findUsers/**"
 management:
   security:
     web:
       exposure:
         include: "*"
+# zuul模块包含ribbon和hystrix依赖
+# 可以配置ribbon和hystrix所有配置
+# 全局关闭重试机制
+#zuul:
+#  retryable: false

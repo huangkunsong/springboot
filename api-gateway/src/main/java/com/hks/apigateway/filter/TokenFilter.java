@@ -9,9 +9,11 @@ import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class AccessFilter extends ZuulFilter {
+import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 
-    private static Logger log = LoggerFactory.getLogger(AccessFilter.class);
+public class TokenFilter extends ZuulFilter {
+
+    private static Logger log = LoggerFactory.getLogger(TokenFilter.class);
 
     /**
      * pre：
@@ -33,7 +35,7 @@ public class AccessFilter extends ZuulFilter {
      */
     @Override
     public String filterType() {
-        return "pre";
+        return PRE_TYPE;
     }
 
     @Override
@@ -48,6 +50,9 @@ public class AccessFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        if (true) {
+            throw new RuntimeException("asdasdasdasd");
+        }
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info("sned {} request to {}",
