@@ -5,6 +5,8 @@ spring:
       admin:
         client:
           url: http://localhost:12000
+  profiles:
+    active: dev
 server:
   port: 3000
 eureka:
