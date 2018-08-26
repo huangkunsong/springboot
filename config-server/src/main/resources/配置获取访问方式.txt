@@ -1,0 +1,10 @@
+会将配置文件信息拷贝一份到本地存储（临时文件,重启应用就不存在）,
+当仓库无法访问时会使用本地保存的配置返回
+
+配置获取访问方式：
+{application} : 要访问的配置仓库中的配置文件前缀（-前面的部分）
+{profile}   : 环境（-后面部分）
+{label} : 分支名称,默认master
+/{application}/{profile}/[{label}]  ： 返回仓库信息和配置文件内容
+/{application}-{profile}.yml       : 直接返回配置文件内容
+/{application}-{profile}.properties : 同上

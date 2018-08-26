@@ -3,7 +3,7 @@ package com.hks.apigateway.common;
 public enum CommonExceptionEnum {
 
     Test500("APP_500", "500异常"),
-    Test401(401, "APP_401", "500异常");
+    Test401(401, "APP_401", "401异常");
 
 
     CommonExceptionEnum(String errorCode, String errorMsg) {

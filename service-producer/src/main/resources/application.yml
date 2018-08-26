@@ -4,6 +4,13 @@ server:
   servlet:
     context-path:
 spring:
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+
   application:
     name: producer
   cloud:

@@ -8,5 +8,5 @@ import java.io.Serializable;
 public class ControllerResult<T> implements Serializable{
     private String errorCode = "200";
     private String errorMsg = "Success";
-    private T data;
+    private T result;
 }
