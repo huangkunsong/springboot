@@ -10,7 +10,6 @@ spring:
     view:
       prefix: /
       suffix: .html
-
   application:
     name: producer
   cloud:

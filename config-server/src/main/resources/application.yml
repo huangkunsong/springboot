@@ -6,9 +6,9 @@ spring:
       server:
         git:
           # 配置git仓库项目的地址
-          uri: https://github.com/huangkunsong/springcloud
+          uri: https://github.com/huangkunsong/springcloud-config-repository
           # 配置项目下的相对地址,可以配置多个用,分割。
-          search-paths: config-repository
+          search-paths: consumer
           # Git 仓库需要权限访问,那么可以通过配置下面的两个属性
           #username: aaa
           #password: aaa
