@@ -12,7 +12,7 @@ import java.util.List;
 
 @RefreshScope
 @RestController
-@RequestMapping(value = "/consumer" , produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/consumer" , produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     @Value(value = "${info.a}")

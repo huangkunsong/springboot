@@ -25,7 +25,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Finchley.M8</spring-cloud.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 	</properties>
 
 	<dependencyManagement>
@@ -88,6 +88,7 @@
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 		</dependency>
 
+        <!-- config server -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>

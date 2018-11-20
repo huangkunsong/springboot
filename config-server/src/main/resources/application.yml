@@ -1,6 +1,20 @@
+server:
+  port: 5999
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1000/eureka/
 spring:
   application:
-    name: config-server
+      name: config-server
+  # 加密
+  security:
+    user:
+      name: aaaa
+      password: bbbb
+  #profiles:
+    # 设置配置从本地获取
+    #  active: native
   cloud:
     config:
       server:
@@ -8,9 +22,23 @@ spring:
           # 配置git仓库项目的地址
           uri: https://github.com/huangkunsong/springcloud-config-repository
           # 配置项目下的相对地址,可以配置多个用,分割。
-          search-paths: consumer
-          # Git 仓库需要权限访问,那么可以通过配置下面的两个属性
+          search-paths: '{application}'
+          # 强制获取最新的配置,不使用缓存
+          force-pull: true
+          # 启动就去clone配置
+          clone-on-start: true
+          # 设置默认分支
+          default-label: master
+          # 配置文件的缓存地址
+          #basedir:
+          #Git 仓库需要权限访问,那么可以通过配置下面的两个属性
           #username: aaa
           #password: aaa
-server:
-  port: 5999
+        # 配置所有应用的默认属性
+        overrides:
+          info:
+            ab: 123123
+        #native:
+        # 设置本地获取文件地址
+        # search-locations:
+

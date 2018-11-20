@@ -52,9 +52,6 @@ public class TokenFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        if (false) {
-            throw new RuntimeException("asdasdasdasd");
-        }
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info("sned {} request to {}",

@@ -27,8 +27,8 @@ public class UserController {
 	@ApiOperation(value = "获取所有用户", notes = "根据用户获取所有")
     @RequestMapping(value = "/findUsers", method = RequestMethod.GET)
     public List<UserVO> findUsers(@RequestParam(name = "userIds", required = false) List<String> userIds){
-        throw new NullPointerException();
-        //return userService.findUsersById(userIds);
+        //throw new NullPointerException();
+        return userService.findUsersById(userIds);
     }
 
     @ApiOperation(value = "获取单个用户信息", notes = "获取单个用户信息")

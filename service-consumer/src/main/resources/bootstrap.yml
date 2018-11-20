@@ -1,7 +1,25 @@
 spring:
   cloud:
     config:
-      name: consumer
+      username: aaaa
+      password: bbbb
       profile: dev
       label: master
-      uri: http://localhost:5999
+      discovery:
+        enabled: true
+        service-id: config-server
+      #启动失败快速响应,可以快速知道是否链接到配置中心
+      #获取失败会尝试6次获取,都无法获取就直接启动失败
+      fail-fast: true
+      retry:
+        #初始重试间隔
+        initial-interval: 1000
+        #间隔倍数
+        multiplier: 1.1
+        #最多重试次数
+        max-attempts: 6
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:1000/eureka/
