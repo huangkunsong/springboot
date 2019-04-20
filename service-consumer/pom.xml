@@ -83,10 +83,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-		</dependency>
 
         <!-- config server -->
 		<dependency>
@@ -105,6 +101,18 @@
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 			<version>2.0.0</version>
 		</dependency>
+
+
+		<!-- 使用rabbitmq集成属性更新事件 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

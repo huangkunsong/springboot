@@ -1,6 +1,9 @@
 spring:
   application:
     name: hystrix-turbine
+  rabbitmq:
+    username: springcloud
+    password: springcloud
 server:
   port: 11000
 eureka:

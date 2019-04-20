@@ -23,7 +23,7 @@ public class UserService {
 
     @HystrixCommand
     public List<UserVO> findUsersByIds(List<String> userIds) {
-        String url = "http://service-producer/producer/findUsers?userIds={userIds}";
+        String url = "http://producer/producer/findUsers?userIds={userIds}";
         Map<String, Object> param = new HashMap<>();
         param.put("userIds", userIds);
         HttpHeaders header = new HttpHeaders();
@@ -37,6 +37,7 @@ public class UserService {
             reference,
             param).getBody();
     }
+
 
     @HystrixCommand
     public UserVO findUserById(String userId) {

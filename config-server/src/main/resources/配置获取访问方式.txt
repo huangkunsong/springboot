@@ -8,3 +8,14 @@
 /{application}/{profile}/[{label}]  ： 返回仓库信息和配置文件内容
 /{application}-{profile}.yml       : 直接返回配置文件内容
 /{application}-{profile}.properties : 同上
+
+//非BUS实例刷新
+httpReqeust.open("POST","actuator/refresh", false)
+
+BUS刷新
+var httpReqeust = new XMLHttpRequest();
+//全实例刷新
+httpReqeust.open("POST","/actuator/bus-refresh", false,"aaaa","bbbb");
+//单实例刷新
+httpReqeust.open("POST","/actuator/bus-refresh/consumer:3001", false,"aaaa","bbbb");
+httpReqeust.send();

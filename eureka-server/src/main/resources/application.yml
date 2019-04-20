@@ -8,7 +8,7 @@ eureka:
     # 关闭注册中心的保护机制
     enable-self-preservation: false
     # 设置清理失效服务间隔时间
-    eviction-interval-timer-in-ms: 600
+    eviction-interval-timer-in-ms: 60000
   instance:
     hostname: localhost
   client:

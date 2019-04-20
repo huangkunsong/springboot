@@ -1,6 +1,9 @@
 spring:
   application:
     name: feign
+  rabbitmq:
+    username: springcloud
+    password: springcloud
 server:
   port: 2500
 eureka:
@@ -16,4 +19,6 @@ logging:
       hks:
         feign:
           service: debug
-
+feign:
+  hystrix:
+    enabled: true

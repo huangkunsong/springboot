@@ -8,10 +8,10 @@ spring:
   application:
       name: config-server
   # 加密
-  security:
-    user:
-      name: aaaa
-      password: bbbb
+  #security:
+  # user:
+  #    name: aaaa
+  #    password: bbbb
   #profiles:
     # 设置配置从本地获取
     #  active: native
@@ -41,4 +41,13 @@ spring:
         #native:
         # 设置本地获取文件地址
         # search-locations:
-
+  rabbitmq:
+    username: springcloud
+    password: springcloud
+#actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        #actuator 显示所有的信息
+        include: "*"

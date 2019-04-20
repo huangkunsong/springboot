@@ -2,8 +2,8 @@ package com.hks.consumer.controller;
 
 import com.hks.consumer.entity.UserVO;
 import com.hks.consumer.service.UserService;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +12,14 @@ import java.util.List;
 
 @RefreshScope
 @RestController
-    @RequestMapping(value = "/consumer" , produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/consumer" , produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
-    @Value(value = "${info.a}")
+    //@Value(value = "${info.a}")
     private String value;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Autowired
     UserService userService;
@@ -36,4 +39,8 @@ public class UserController {
         return this.value;
     }
 
+    @RequestMapping(path = "/sendMessage")
+    public void sendMessage() {
+        amqpTemplate.convertAndSend("hello", "hello world我");
+    }
 }

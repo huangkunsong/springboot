@@ -2,11 +2,14 @@ spring:
   application:
     name: consumer
   boot:
-      admin:
-        client:
-          url: http://localhost:12000
+    admin:
+      client:
+        url: http://localhost:12000
   profiles:
     active: dev
+  rabbitmq:
+    username: springcloud
+    password: springcloud
 server:
   port: 3000
 eureka:
