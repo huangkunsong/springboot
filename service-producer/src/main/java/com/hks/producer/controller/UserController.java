@@ -1,6 +1,7 @@
 package com.hks.producer.controller;
 
 import com.hks.producer.common.NotResultWrap;
+import com.hks.producer.configuration.RocketSend;
 import com.hks.producer.entity.UserVO;
 import com.hks.producer.service.UserService;
 import io.swagger.annotations.Api;
@@ -23,6 +24,9 @@ public class UserController {
     @Autowired
     DiscoveryClient client;
 
+    @Autowired
+    RocketSend rocketSend;
+
     @NotResultWrap
 	@ApiOperation(value = "获取所有用户", notes = "根据用户获取所有")
     @RequestMapping(value = "/findUsers", method = RequestMethod.GET)
@@ -36,5 +40,10 @@ public class UserController {
     public UserVO findUser(@PathVariable String userId){
 	    throw new NullPointerException();
         //return userService.findUserById(userId);
+    }
+
+    @RequestMapping(value = "/sendMessage", method = RequestMethod.GET)
+    public void sendMessage(){
+        rocketSend.sendOutputMessage();
     }
 }

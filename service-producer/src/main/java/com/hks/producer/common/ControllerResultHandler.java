@@ -19,7 +19,8 @@ public class ControllerResultHandler implements ResponseBodyAdvice<Object> {
         Class clazz = returnType.getDeclaringClass();
         Method method = returnType.getMethod();
         if (clazz.isAnnotationPresent(NotResultWrap.class) ||
-            method.isAnnotationPresent(NotResultWrap.class)) {
+            method.isAnnotationPresent(NotResultWrap.class) ||
+            returnType.getGenericParameterType().getTypeName().equals("void")) {
             return false;
         }
         return true;

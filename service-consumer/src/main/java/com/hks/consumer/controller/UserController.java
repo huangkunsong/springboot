@@ -1,5 +1,6 @@
 package com.hks.consumer.controller;
 
+import com.hks.consumer.amqpRecevice.RocketSend;
 import com.hks.consumer.entity.UserVO;
 import com.hks.consumer.service.UserService;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -24,6 +25,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RocketSend rocketSend;
+
     @RequestMapping(value = "/findUsers", method = RequestMethod.GET)
     public List<UserVO> findUsers(@RequestParam("userIds") List<String> userIds){
         return userService.findUsersByIds(userIds);
@@ -42,5 +46,15 @@ public class UserController {
     @RequestMapping(path = "/sendMessage")
     public void sendMessage() {
         amqpTemplate.convertAndSend("hello", "hello world我");
+    }
+
+    @RequestMapping(path = "/sendOutput")
+    public void sendOutput() {
+        rocketSend.sendOutputMessage();
+    }
+
+    @RequestMapping(path = "/sendInput")
+    public void sendInput() {
+        rocketSend.sendInputMessage();
     }
 }

@@ -4,6 +4,19 @@ server:
   servlet:
     context-path:
 spring:
+  rabbitmq:
+    username: springcloud
+    password: springcloud
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: springCloud
+          group: output
+    loadbalancer:
+      # 开启服务重试机制
+      retry:
+        enabled: true
   resources:
     static-locations: classpath:/static/
   mvc:
@@ -12,11 +25,6 @@ spring:
       suffix: .html
   application:
     name: producer
-  cloud:
-    loadbalancer:
-    # 开启服务重试机制
-      retry:
-        enabled: true
   boot:
     admin:
       client:
