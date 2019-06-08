@@ -17,6 +17,14 @@ spring:
       # 开启服务重试机制
       retry:
         enabled: true
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+  zipkin:
+    base-url: http://localhost:9412
   resources:
     static-locations: classpath:/static/
   mvc:
@@ -111,7 +119,7 @@ mybatis:
   # 实体类包位置
   type-aliases-package: com.hks.producer.entity
   configuration-properties:
-    dialect : mysql
+    dialect: mysql
 # 集成log4j2
 logging:
   config: classpath:configuration/log4j2.xml
@@ -123,8 +131,8 @@ management:
         #actuator 显示所有的信息
         include: "*"
   endpoint:
-      health:
-        show-details: ALWAYS
+    health:
+      show-details: ALWAYS
 hystrix:
   collapser:
     default:

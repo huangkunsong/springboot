@@ -1,6 +1,14 @@
 spring:
   application:
     name: consumer
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+  zipkin:
+    base-url: http://localhost:9412
   boot:
     admin:
       client:
@@ -45,7 +53,7 @@ hystrix:
         isolation:
           thread:
             # 断路器拦截执行超时时间
-            timeoutInMilliseconds: 1000
+            timeoutInMilliseconds: 10000
             # 断路器拦截超时是否中断执行线程
             interruptOnTimeout: true
             # 执行取消时是否中断线程

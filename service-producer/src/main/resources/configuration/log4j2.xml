@@ -82,7 +82,7 @@
         <Logger name="org.springframework" level="info" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Root level="debug">
+        <Root level="info">
             <AppenderRef ref="console"/>
             <AppenderRef ref="other" />
             <AppenderRef ref="error" />
