@@ -22,4 +22,4 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://peer1:1000/eureka/
+      defaultZone: http://centos-1:1000/eureka/

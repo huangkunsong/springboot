@@ -5,7 +5,7 @@ server:
   port: 1000
 eureka:
   instance:
-    hostname: peer1
+    hostname: centos-1
   client:
     serviceUrl:
-      defaultZone: http://peer2:1001/eureka/
+      defaultZone: http://centos-2:1001/eureka/

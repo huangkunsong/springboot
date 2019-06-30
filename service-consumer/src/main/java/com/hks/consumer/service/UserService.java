@@ -42,7 +42,7 @@ public class UserService {
     @HystrixCommand
     public UserVO findUserById(String userId) {
         return restTemplate.getForEntity(
-            "http://service-producer/producer/findUser/{userId}",
+            "http://producer/producer/findUser/{userId}",
             UserVO.class, userId).getBody();
     }
 

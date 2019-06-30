@@ -1,0 +1,28 @@
+#指定docker-compose.yml 结构版本
+version: "3"
+services:
+  producer:
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    #  args:  #运行Dockerfile文件的args,在Dockerfile文件中使用的参数
+    #    - aaa: 123
+    #    不赋值,运行时才进行赋值
+    #    - bb
+    #简写build
+    build: .
+    #指定镜像名或镜像id,不存在会自动下载(指定了该项,不会根据Dockerfile生成镜像)
+    #如果你同时指定了 image 和 build 两个标签
+    #那么 Compose 会构建镜像并且把镜像命名为 image 后面的那个名字。
+    image: producer:0.0.1-SNAPSHOT
+    #指定绑定端口
+    ports:
+      - "99:2000"
+    #容器名称
+    container_name: producer
+    #挂载目录
+    volumes:
+      - "/logs:/logs"
+    #command 覆盖Dockerfile启动后执行的命令
+    #depends_on:
+    #  -aa：指定先启动aa服务
